@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script>
+			
+			/* 匿名函数的使用 */
+			(function(){
+				alert("aaaaa");
+			})();
+			
+			/* 函数声明
+			会在浏览器打开时就创建 */
+			function myfunc(a,b){
+				return c = a+b;
+			}
+			document.write(myfunc(1,2));
+			
+			/* 函数表达式
+			在浏览器打开时var声明提前，但是函数没有创建 */
+			
+			var myfunc2 = function(a,b){
+				return c = a+b;
+			}
+			console.log(myfunc2(1,2));
+			
+			/* 构造函数(用new来构造一个函数)
+			
+			说明:可以使用new来构造一个对象,
+			
+			说明:函数名称首字母大写,
+			
+			构造函数执行流程:
+			1.立刻构建一个新的对象
+			2.将新建的对象设置为函数中的this
+			3.支行执行函数中的代码
+			4.将新建的对象作为返回值返回 
+			
+			使用同一个构造函数创建的对象，我们成为一类对象，也将一个构造函数成为一个类
+			我们将通过一个构造函数构建的对象，成为该类的实例
+			
+			*/
+		   
+		   
+		   //补充：
+		   /* this的含义:
+		   1.当以函数的形式被调用时,this就是window;
+		   2.当以方法的形式被调用时,this就是调用它的对象;
+		   3.当以构造函数的形式被调用时,this就是新创建的对象; */
+		   
+		   /* 
+		   将fullName方法写在全局作用域中，污染了全局作用域的命名空间
+		   而且不安全（如果有其它的函数命一致，会被覆盖掉）
+		   function full(){
+		   	return this.firstN+this.lastN;
+		   	}
+		   */
+		  
+		  
+		 /* 
+		 我们所构建的每一个函数，解析器都会想函数（Person）中添加一个属性prototype
+		 这个属性对应一个对象，就是原型对象
+		 如果函数以普通函数的形式调用prototype没有任何作用
+		 当函数以构造函数的形式调用时，它所创建的对象（per）中就会有一个隐含的属性
+		 指向该构造函数的原型对象，我们可以通过__proto__来访问该属性
+		 
+		 原型对象就相当于一个公共的区域，所有同一个类的实例都可以访问到这个原型对象，
+		 我们可以将对象中共有的内容，统一设置到原型对象中
+		 向原型对象中添加方法 */
+		  Person.prototype.fullName = function(){
+		  	return this.firstN+this.lastN;
+		  	};
+		 
+			Person.prototype.hi = "hi";
+			function Person(firstName,lastName,age){
+				this.firstN = firstName;
+				this.lastN = lastName;
+				this.age = age;
+				//this.fullName = full;
+				
+				/*在Person函数中，为每一个对象都添加了fullName方法，
+				方法在函数的内部创建，每执行一次Person函数，就会创建一个新的fullName方法，
+				也就是每个实例的fullName方法都是唯一的
+				 this.fullName = function(){
+						return this.firstN+this.lastN;
+				}; */
+					document.write("姓名："+this.fullName()+"<br />"+
+					"年龄："+this.age+"<br />");
+			}
+			function Dog(){
+				
+			}
+			//per,per1为同类对象，per时Person类的实例
+			var per = new Person("wang","ting",18);
+			var per1 = new Person("wang","2ting",18);
+			var dog1 = new Dog();
+			/* //instanceof而已检查一个对象是不是类的实例
+			console.log(per instanceof Person);
+			//所有的对象都是Object的实例
+			console.log(per instanceof Object) */;
+			//对象执行==相等运算时，不比较值，比较堆内存时只比较地址
+			//注意：其它数据类型以栈内存形式储存，比较值
+			 console.log(per.fullName == per1.fullName);
+			//查看
+			console.log(Person.prototype);
+			console.log(per.__proto__);
+			console.log(per.__proto__ == Person.prototype);//true
+			
+			//使用in检查对象中是否含有某个属性时，如果对象没有这个属性，但是原型对象中有，返回true
+			console.log("hi" in per);//true
+			//使用对象的hasOwnProperty()方法来检查对象自身是否含有某个属性
+			console.log(per.hasOwnProperty("hi"));//false
+			
+			//per的原型对象中没有hasOwnProperty()方法
+			console.log(per.__proto__.hasOwnProperty("hasOwnProperty"));//false
+			/* 原型对象也是对象，也有原型对象
+			per的原型对象的原型对象中有hasOwnProperty()方法
+			当我们使用一个对象的属性或方法时，会先在对象中寻找，有则使用
+			没有则取对象的原型对象中寻找,有则使用
+			*/
+			console.log(per.__proto__.__proto__.hasOwnProperty("hasOwnProperty"));//true
+			
+			/* 如果还没有,取对象的原型对象的原型对象中寻找,直到找到Object的原型对象
+			Object对象的原型中没有原型,Object的原型中还没有,则返回undefined */
+			console.log(per.__proto__.__proto__.__proto__);
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
