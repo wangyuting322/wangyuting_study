@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script>
+			
+			function fullName(firstName, lastName) {
+				//注意返回值的名称不可以和函数名称一致
+				return full = this.firstName + this.lastName;//this指代使用这个方法的对象person
+			}
+
+			function addPerson(firstName, lastName, age, gender) {
+
+				//构造对象
+				var person = new Object();
+				//添加对象属性
+				person.firstName = firstName; //形参的值
+				person.lastName = lastName;
+				person.age = age;
+				person.gender = gender;
+				person.fullName = fullName; //引用函数对象
+
+				document.write("名称：" + person.fullName() + "<br />" +
+					"年龄：" + person.age + "<br />" +
+					"性别：" + person.gender + "<br />");
+				//返回对象
+				return person;
+			}
+
+			var addperson1 = addPerson("王", "大", 18, "女");
+			var addperson2 = addPerson("王", "小", 16, "女");
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
