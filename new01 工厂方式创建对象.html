@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script>
+			
+			//全局age
+			// var age = 12;
+			
+			function fullName(firstName,lastName){	
+				//this指person对象中的age，控制台输出person.age
+				// var age = this.age++;
+				// console.log(age);
+				
+				//this指person对象中的age，控制台输出window.age
+				// this.age++;
+				// console.log(age);
+				
+				//full命名不可与函数变量命一样
+				return full = this.firstName+this.lastName;
+			}
+			
+			//构造函数
+			function addPerson(firstName,lastName,age,gender){
+				//创建对象
+				var person = new Object();
+				//创建对象属性
+				person.firstName = firstName;
+				person.lastName = lastName;
+				person.age = age;
+				person.gender = gender;
+				//调用其它函数计算fullName
+				person.fullName = fullName;
+				//输出值
+				document.write("年龄： "+person.age+"<br />"+"性别： "
+				+person.gender+"<br />"+"全称： "+person.fullName()+"<br />");
+				
+			}
+			var obj1 = addPerson("王","大婷",18,"女");
+			var obj2 = addPerson("王","小婷",16,"女");
+			
+			//输出全局age
+			//console.log(age);
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
