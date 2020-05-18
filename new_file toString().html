@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script>
+			
+			/*
+			每一个函数都有一个prototype的属性
+			但是普通函数的prototype属性没有任何作用；
+			但是构造函数的prototype有作用
+			可以使用实例对象的__proto__来访问该属性
+			 */
+			function AddPerson(firstName, lastName, age, gender) {
+
+				this.firstName = firstName; 
+				this.lastName = lastName;
+				this.age = age;
+				this.gender = gender;
+
+
+			}
+
+			var addperson1 = new AddPerson("王", "大", 18, "女");
+			var addperson2 = new AddPerson("王", "小", 16, "女");
+			
+			//直接输出的时addperson1的toString()值
+			console.log("addperson1: " + addperson1);
+			console.log("addperson1: " + addperson1.toString());
+			
+			//修改实例的toString()方法后只使用自身
+			addperson1.toString = function() {
+				return "名字：" + this.firstName + this.lastName;
+			};
+			console.log("AddPerson后addperson1: " + addperson1);
+			console.log("AddPerson后addperson2: " + addperson2);
+			
+			
+			//修改实例的原型对象的toString()方法后使用于同类所有实例
+			addperson1.__proto__.toString = function() {
+				return "名字：" + this.firstName + this.lastName;
+			};
+			console.log("AddPerson后addperson1: " + addperson1);
+			console.log("AddPerson后addperson2: " + addperson2);
+
+
+			//修改函数的原型对象的toString()方法后使用于同类所有实例
+			AddPerson.prototype.toString = function() {
+				return "名字：" + this.firstName + this.lastName;
+			};
+			console.log("AddPerson后addperson1: " + addperson1);
+			console.log("AddPerson后addperson2: " + addperson2);
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

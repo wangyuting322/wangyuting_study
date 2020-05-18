@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script>
+			//新建一个数组
+			var arr = new Array();
+			/* 
+			向数组中添加元素（索引和值），索引为从0开始的整数
+			语句： 数组[索引] = 值
+			 */
+			arr[0] = 12;
+			arr[1] = 13;
+			arr[3] = 14;
+			//查询数组
+			document.write(arr + "<br />");
+			/* 
+			根据索引查询数组
+			语句： 数组[索引]
+			如果读取不存在的索引，则显示undefined
+			 */
+			document.write(arr[2] + "<br />");
+			/* 获取数组的长度 
+			可以用数组的属性length
+			语法： 数组.length
+			注意：如果是非连续的数组，那么使用数组.length会返回最大索引+1
+			*/
+
+			document.write(arr.length + "<br />");
+
+			/* 
+			 修改length：
+			 如果修改length超出原来的长度，就显示为空
+			 如果修改length小于原来的长度，就会把多余的删除
+			 */
+			arr.length = 6;
+			document.write(arr + "<br />");
+
+			arr.length = 2;
+			document.write(arr + "<br />");
+			//可以通过length添加元素
+			arr[arr.length] = 14;
+			document.write(arr + "<br />");
+
+
+
+			//字面量创建对象:
+			var obj = {
+				name: "11",
+				age: 15,
+				gender: "male"
+			};
+			//字面量创建数组,可以添加任何类型的值:
+			var arra = [12, true, "jk", null, undefined, {
+				age: 12
+			}, function() {}];
+			var objs = {
+				name: "1"
+			};
+			arra[arra.length] = objs;
+			console.log(arra);
+			var arra1 = [
+				[1, 2, 3],
+				[2, 3],
+				[2333, 33]
+			];
+			console.log(arra1[1]);
+			//下面两个字面量创建数组和构造函数创建数组一样
+			var arr2 = [10, 11];
+			var arr3 = new Array(10, 11);
+
+			//当仅添加一个值时：
+			var arr4 = [10]; //字面量创建数组：创建一个长度为1的，元素值为10的数组
+			var arr5 = new Array(10); //构造函数创建数组：创建一个长度为10的数组
+
+			//数组的方法(以下四种会改变原数组)
+			var myArr = ["唐僧","猪八戒","金角大王"];
+			console.log("myArr = " + myArr);
+			
+			//1.数组的push()方法可以向数组的末尾添加一个或多个元素，并将最后数组的新长度作为返回值返回
+			myArr.push("沙僧", "孙悟空", "白骨精");
+			console.log("myArr = " + myArr);
+			
+			var mypush = myArr.push("玉兔精");
+			console.log("myArr = " + myArr);
+			console.log("mypush = " + mypush);
+
+			//2.数组的pop()方法可以从数组的末尾删除一个元素并将该元素的值最为返回值返回
+			myArr.pop();
+			console.log("myArr = " + myArr);
+
+			var mypop = myArr.pop();
+			console.log("myArr = " + myArr);
+			console.log("mypop = " + mypop);
+			
+			//3.数组的unshift()方法可以向数组的开始添加一个或多个元素，并将最后数组的新长度作为返回值返回
+			myArr.unshift("黑熊精", "银角大王");
+			console.log("myArr = " + myArr);
+			
+			var myunshift = myArr.unshift( "红孩儿");
+			console.log("myArr = " + myArr);
+			console.log("myunshift = " + myunshift);
+			
+			//4.数组的shift()方法可以从数组的开始删除第一个元素并将该元素的值最为返回值返回
+			myArr.shift();
+			console.log("myArr = " + myArr);
+			
+			var myshift = myArr.shift();
+			console.log("myArr = " + myArr);
+			console.log("myshift = " + myshift);
+			
+			
+			
+			//练习一：成年人过筛
+			Mes.prototype.fullname1 = function(){
+				return this.firstname + this.lastname;
+			};
+			
+			function Mes(first,last,age){
+				this.firstname = first;
+				this.lastname = last;
+				this.age = age;
+				
+			}
+			
+			var mymes1 = new Mes("孙","悟空",18);
+			var mymes2 = new Mes("猪","悟能",17);
+			var mymes3 = new Mes("沙","悟净",19);
+			
+			Mes.prototype.toString = function(){
+				return "我是"+this.fullname1()+"，我"+this.age;
+			};
+			console.log("mymes1的toString值： "+mymes1);
+			console.log("mymes1的名字： "+mymes1.fullname1());
+			var sanren = [mymes1,mymes2,mymes3];
+			console.log("数组中第二人的名字： "+sanren[1].fullname1());
+			console.log("fullname1"in mymes1);
+			console.log(mymes1.__proto__.hasOwnProperty("fullname1"));
+			console.log("sanren的toString值： "+sanren);
+			
+			//筛选
+			function adult(arr){
+				//创建一个新的数组
+				var newArr = [];
+				//全部元素遍历
+				for(var i = 0;i<arr.length;i++){
+					//筛选出年龄>18的元素
+					if(arr[i].age >= 18){
+						//放到新的数组中
+						//newArr[newArr.length] = arr[i];
+						newArr.push(arr[i]);
+					}
+					
+				}
+				
+				//return新的数组
+				return newArr;
+			}
+			
+			var adu = adult(sanren);
+			
+			console.log("adu第一个人 = "+adu[0].fullname1());
+			console.log("adu = "+adu);
+			
+		
+		/* forEach()方法在IE8及以下都不兼容，用的少
+		需要传一个函数
+		像这种由我们创建,但是不由我们调用执行的函数叫做回调函数
+		 
+		 */
+		var newwang = ["sun","wei","zhang"];
+		newwang.forEach(function(value,index,obj){
+			console.log("value = "+value+" ， index = "+index+" ，完整数组 = "+obj);
+		console.log( obj == newwang);
+		console.log(typeof obj);
+		});
+		
+	/* 	
+		slice()方法可以从数组中提取一个或多个元素
+		不改变原数组，而是将提取的元素封装到新的数组中
+		1.输入开始截取的位置（包含开始位置）
+		2.结束的位置（不包含结束位置）
+				——不填写结束位置则默认提取开始位置到最后所有元素
+				索引值可以为负数（-1就是最后一个数）
+		 */
+		var newwang2 = ["sun","wei","zhang","yuan","nin"];
+		newwang2.slice(0,2);
+		console.log(newwang2);//原数组
+		var newwang3 = newwang2.slice(0,2);
+		console.log(newwang3);//提取后的数组
+		newwang3 = newwang2.slice(1,-1);
+		console.log(newwang3);//提取后的数组
+		newwang3 = newwang2.slice(1,1);
+		console.log(newwang3);//提取后的数组，为空
+		newwang3 = newwang2.slice(-3,1);
+		console.log(newwang3);//提取后的数组，为空
+		newwang3 = newwang2.slice(-2,-4);
+		console.log(newwang3);//提取后的数组，为空
+		newwang3 = newwang2.slice(-4,-2);
+		console.log(newwang3);//提取后的数组
+		
+		
+		/* 
+		splice()方法可以删除指定元素并返回删除的元素，也可以插入指定元素
+		可以直接改变原数组
+		1.输入删除开始位置（这个开始位置的也会被删除，索引可以为负数）
+		2.输入删除元素个数
+				删除元素个数为0则不删除
+				如果删除个数>可删除元素，则把可删除的删除完
+		3.第三个参数会在数组第一个参数指定的索引位置插入新的元素，元素顺序不变
+		
+		
+		 */
+		console.log(newwang2);
+		newwang2.splice(0,1);//删除一个
+		console.log("splice后"+newwang2);//改变原数组
+		var mysplice = newwang2.splice(2,1,"我","你");//又删除了一个
+		console.log(newwang2);//改变原数组
+		console.log(mysplice);//改变原数组
+		
+		
+	
+		//练习二：去除重复元素
+		var chong = [1,2,1,3,2,2,12,2,3,2,1,4,5,2,3,5];
+		
+		function quchuchong(arr){
+			//创建一个数组
+			var newarr = arr;
+			//遍历每一个值
+			for(var i = 0; i<newarr.length;i++){
+				var beibijiao = arr[i];
+				for(var j = i+1;j<newarr.length;){
+					var bijiao = arr[j];
+					if(beibijiao == bijiao){
+						newarr.splice(j,1);
+						j=j;
+					}else{
+						j++;
+					}
+					
+					
+				}
+				
+			}
+			//返回新数组
+			return newarr;
+		}
+		
+		
+		var finalword = quchuchong(chong);
+		console.log(finalword);
+			
+			
+			/* 
+			concat()方法可以连接两个或多个数组，并将新的数组返回
+			 该方法不改变原数组
+			 */
+			var b1 = ["sun","wei","zhang"];
+			var b2 = ["zhao","qian","li"];
+			b1.concat(b2,"zhou","wu");
+			console.log(b1);//b1原数组
+			var b12 = b1.concat(b2,"zhou","wu");
+			console.log(b12);//新数组
+			
+			
+			/*
+			join()方法可以将数组转换成一个字符串输出
+			 该方法不改变原数组
+			 可以指定连接符，不指定时默认,连接
+			 */
+			b1 = ["sun","wei","zhang"];
+			b2 = ["zhao","qian","li"];
+			b1.join();
+			console.log(b1);//b1原数组
+			var b13 = b1.join("-");
+			console.log(b13);//新字符串sun-wei-zhang
+			console.log(typeof b13);//string
+			
+			/* reverse()方法反转数组元素的顺序
+			会改变原数组 */
+			console.log(b1);
+			b1.reverse();
+			console.log(b1);
+			
+			/* sort()方法对数组中的元素进行排序
+			会改变原数组
+			 将元素按照unicode编码表进行比较
+			 数字排序可能会出现错误
+			 可以使用回调函数进行自定义排序，回调函数中需要自定义两个形参
+			 函数会将数组的元素作为实参，a和b具体调用哪个元素不确定，但是可以肯定的在数组中是a一定在后面
+			 sort会根据返回值来进行元素位置调整：
+					返回值>=0,不改变位置
+					返回值<0,元素位置对调
+			 
+			 */
+			var c = ["a","u","v","c","e"];
+			console.log(c);
+			c.sort();
+			console.log(c);
+			c = [1,5,3,6,7,11,2,2];
+			//c.sort();
+			c.sort(function(a,b){
+			return a>b?1:-1;
+				// return 1;
+			});
+			console.log(c);
+			
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
