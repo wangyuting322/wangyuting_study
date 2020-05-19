@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script>
+			/*  
+		Math
+			-Math和其它的对象不同，它不是一个构造函数
+				-它属于一个工具类，不用创建对象，它里面封装了数学云端相关的属性和方法
+		  */
+			//圆周率
+			var p = Math.PI;
+			console.log(p);
+
+			//取绝对值
+			console.log(Math.abs(-121));
+
+			//向上取整-有小数部分就进一
+			console.log(Math.ceil(1.2));
+
+			//向下取整-由小数部分就舍去
+			console.log(Math.floor(12.99));
+
+			//四舍五入
+			console.log(Math.round(1.49));
+			console.log(Math.round(1.99));
+
+			//random()方法可以创建0-1的随机数（不包括0，不包括1），会重复
+			//		- 生成x 到 y的随机数:Math.random()*(y-x)+x
+			for (var i = 0; i < 5; i++) {
+				console.log(Math.random());
+				console.log(Math.round(Math.random() * 10)); //0-10的随机整数，会重复
+				console.log(parseInt((Math.random() * 10))); //0-10的随机整数，会重复
+				console.log(parseInt((Math.random() * 8) + 2)); //2-10之间的随机整数，会重复
+			}
+			
+			// 最大最小值
+			var max = Math.max(12,323,565,42,1,);
+			console.log(max);
+			var min = Math.min(2,5,65,63,3,);
+			console.log(min);
+			
+			//幂和开方
+			// Math.pow(x,y)表示x的y次方
+			var pow = Math.pow(3,2);//3的2次方，9
+			var sqrt = Math.sqrt(9);//开方运算
+			console.log(pow);
+			console.log(sqrt);
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
