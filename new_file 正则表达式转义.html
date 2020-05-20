@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script>
+			
+			/* 
+			 检查一个字符串中是否含有.
+				.表示任意字符
+				
+				在正则表达式中使用\作为转义字符
+				\.来表示.
+				\\来表示\   
+						注意字符串中\也会转义掉，要写\\表示一个\
+						
+				注意：使用偶早函数是，由于它的参数是一个字符串，而\是字符串中的转义符
+				如果要使用\则需要使用\\来代替，\\要使用\\\\来代替
+				
+				
+			 */
+			
+			var reg = /./;
+			var result = reg.test("dfasjasdja34￥#@￥#@%");
+			console.log(result);
+			
+			reg = /\./;
+			console.log(reg.test("dfasjasdja34￥#@￥#@%"));
+			reg = /\\/;
+			console.log(reg.test("dfasjasdja34￥\你#@￥#@%"));//注意字符串中\也会转义掉，要写\\表示一个\
+			
+			
+			var reg2 = new RegExp("\.");
+			console.log(reg2);//显示/./
+			console.log(reg2.test("$#%$#FDFSD"));//返回true
+			reg2 = new RegExp("\\.");
+			console.log(reg2);//显示/\./
+			console.log(reg2.test("$#%$#FDFSD"));//返回false
+			
+			
+			/* 
+			 \w
+				-任意 数字 字母 _    [A-z0-9_]
+			 \W
+				-除数字 字母 _   [^A-z0-9_]
+			 \d
+				-任意数字     [0-9]
+			 \D
+				-除任意数字    [^0-9]
+			 \s
+				-任意空格
+			 \S
+				-除空格
+			 \b
+				-单词边界
+			 \B
+				-除了单词边界
+			 
+			 */
+			
+			/* 
+			 创建一个正则表达式检查一个字符串是否含有单词child
+			 */
+			reg = /child/;
+			console.log(reg.test("hello children"));
+			reg = /\bchild\b/;
+			console.log(reg.test("hello children"));
+			
+			/* 
+			 去除头尾的空格
+			 */
+			str = "              hello     ds   dede      ";
+			reg = /^\s*|\s*$/;
+			var res = str.replace(reg,"");
+			console.log(res);
+			
+			/*
+			 邮件格式匹配
+			 
+			 dsfk  .defk @ fbksh34 .com.cn
+			^ \w{3,}  (\.\w+)* @ [A-z0-9]+ (\.[A-z]{2,5})+$
+			 */
+			str = "2428282291@163.com";
+			reg = /^\w{3,}(\.\w+)*@[A-z0-9]+(\.[A-z]{2,5})+$/;
+			console.log(reg.test(str));
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

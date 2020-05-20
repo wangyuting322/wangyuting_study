@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script>
+			/* 
+			 正则表达式
+				用于定义一些字符串的规则
+				计算机可以根据正则表达式，来检查一个字符串是否符合规则
+				或者将字符串中符合规则的内容提取出来
+				
+				对我们来说正则表达式相当于一个对象
+			 
+			 */
+			
+			//使用构造函数创建正则表达式对象
+			
+			/* 
+			 语法：
+				var 变量 = new RegExp("正则表达式","匹配模式");
+				
+				使用typeof来检查正则表达式，返回object
+				
+				var reg = new RegExp("a");这个正则表达式可以用来检查一个字符串中是否含有a
+				严格区分大小写
+				再构造函数中可以传递一个匹配模式作为第二个参数，
+				可以是
+					i 忽略大小写ignore
+					g 全局匹配模式global
+			
+			 */
+			var reg = new RegExp("a");
+			console.log(reg);//输出/a/
+			console.log(typeof reg);
+			console.log(reg instanceof RegExp);//用 instanceof来检查对象是否是类的实例，所有对象都是Object的实例
+			
+			var str = "a";
+			
+			/* 
+			 正则表达式的方法：
+			 test()
+				-使用这个方法可以用来检查一个字符串是否符合正则表达式的规则
+				如果符合则返回true,否则返回false
+				
+				
+			 */
+			var result = reg.test(str);
+			console.log(result);
+			result = reg.test("abc");
+			console.log(result);
+			result = reg.test("ds");
+			console.log(result);
+			
+			var reg1 = new RegExp("ad","i");
+			result = reg1.test("Adesf");
+			console.log(result);
+			
+			
+			
+			
+			/* 
+			使用字面量来创建正则表达式
+			 语法： var 变量 = /正则表达式/匹配模式;
+			 注意没有引号
+			 
+			 使用|表示或者的意思
+			 []里面的内容也是或的关系
+			 [ab] = a|b
+			 [a-z]任意小写字母
+			 [A-Z]任意大写字母
+			 [^ ]除了，检查是否有含有除了指定字符外的其它字符
+			 [0-9]人一数字
+			 */
+			
+			
+			var reg2 = /a/;
+			console.log(reg2.test("aaadd"));
+			reg2 = /a|b/;
+			console.log(reg2.test("aabcsdsfd"));
+			reg2 = /[ab]/;
+			console.log(reg2.test("aabcsdsfd"));
+			reg2 = /[a-z]/;
+			console.log(reg2.test("aabcsdsfd"));
+			reg2 = /[A-Z]/;
+			console.log(reg2.test("aabcsdsfd"));
+			reg2 = /[A-z]/;
+			console.log(reg2.test("aabcsdsfd"));
+			reg2 = /a[bcd]r/;
+			console.log(reg2.test("adrddd"));//是否有abr|acr|adr
+			reg2 = /a[^bcd]r/;
+			console.log(reg2.test("adr"));//false
+			console.log(reg2.test("aer"));//true
+			reg2 = /[0-9]/;
+			console.log(reg2.test("adr9"));
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
