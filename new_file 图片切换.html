@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			window.onload = function() {
+				//img图片数组
+				var imgall = ["./img/包包.jpg", "./img/发带.jpg", "./img/timg.jpg"];
+				var index = 0;
+
+
+				//初始化，h2显示一共几张，当前第几张
+				//注意document.getElementsByTagName要定义第几个元素
+				var img = document.getElementsByTagName("img")[0];
+				img.src = imgall[index];
+				var h2 = document.getElementsByTagName("h2")[0];
+				h2.innerHTML = "一共" + imgall.length + "，当前第" + (index + 1) + "张";
+
+				//创建一个公用的单击函数
+				var fun = function(idName, clickFun) {
+					var btn = document.getElementById(idName);
+					btn.onclick = clickFun;
+				};
+				//上一张
+				fun("prev", function() {
+					if (index == 0) {
+						img.src = imgall[imgall.length - 1];
+						index = imgall.length - 1;
+					} else {
+						index--;
+						img.src = imgall[index];
+
+					}
+					h2.innerHTML = "一共" + imgall.length + "，当前第" + (index + 1) + "张";
+				});
+				fun("next", function() {
+					if (index == imgall.length - 1) {
+						img.src = imgall[0];
+						index = 0;
+					} else {
+						index++;
+						img.src = imgall[index];
+
+					}
+					h2.innerHTML = "一共" + imgall.length + "，当前第" + (index + 1) + "张";
+				});
+
+
+
+			};
+		</script>
+
+
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0px;
+			}
+
+			#outer {
+				width: 310px;
+				margin: 200 auto;
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="outer">
+			<h2></h2>
+			<img src="./img/包包.jpg" style="width: 300px;">
+			<button type="button" id="prev">上一张</button>
+			<button type="button" id="next">下一张</button>
+		</div>
+	</body>
+</html>

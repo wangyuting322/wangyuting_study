@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			window.onload = function(){
+			var fun = function(idName, clickFun) {
+				var btn = document.getElementById(idName);
+				btn.onclick = clickFun;
+			};
+			//查找#bj节点
+			fun("btn1",function(){
+				var bj = document.getElementById("bj");
+				alert(bj.innerHTML);
+			});
+			//查找所有li节点
+			fun("btn2",function(){
+				var li = document.getElementsByTagName("li");
+				alert(li.length);
+				for(var i = 0;1<li.length;i++){
+					alert(li[i].innerHTML);
+				}
+			});
+			//查找所有name = gender的节点
+			fun("btn3",function(){
+				var gender = document.getElementsByName("gender");
+				alert(gender.length);
+				for(var i = 0;1<gender.length;i++){
+					alert(gender[i].value);
+				}
+			});
+			//查找#city下的所有li节点
+			fun("btn4",function(){
+				var city = document.getElementById("city");
+				var cityli = city.getElementsByTagName("li");
+				alert(cityli.length);
+				for(var i = 0;1<cityli.length;i++){
+					alert(cityli[i].innerHTML);
+				}
+			});
+			//查找#city下的所有子节点，包括文本字节（换行符）
+			fun("btn5",function(){
+			
+			//	var cityson = city.childNodes;
+				var cityson = city.children;
+				alert(cityson.length);
+				for(var i = 0;1<cityson.length;i++){
+					alert(cityson[i].innerText);
+				}
+			});
+			
+			//查找#phone下的第一个子节点
+			fun("btn6",function(){
+			var phone = document.getElementById("phone");
+			
+				//var phonefirst = phone.firstChild;
+				
+				//firstElementChild表示第一个子元素，，IE8以下不支持
+				var phonefirst = phone.firstElementChild;
+				alert(phonefirst.innerHTML);				
+			});
+			
+			//查找#bj下的父节点
+			fun("btn7",function(){
+				var bj = document.getElementById("bj");
+			var bjfu = bj.parentNode;
+				// alert(bjfu.innerHTML);
+				//innerText会获取到元素内部的文本内容，和innerHTML类似，不同的是它会自动将HTML标签去除
+				alert(bjfu.innerText);	
+			});
+			
+			//查找#android前一个兄弟节点
+			fun("btn8",function(){
+			var android = document.getElementById("android");
+			//var andpr = android.previousSibling;
+			//previousElementSibling获取前一个兄弟元素，IE8以下不支持
+			
+			var andpr = android.previousElementSibling;
+					alert(andpr.innerHTML);	
+			});
+			
+			//返回username的value
+			fun("btn9",function(){
+			var username = document.getElementsByName("username")[0];
+					alert(username.value);	
+			});
+			
+			//修改username的value
+			fun("btn10",function(){
+			var username = document.getElementsByName("username")[0];
+					username.value = "434";
+			});
+			
+			//返回#bj的文本值
+			fun("btn11",function(){
+				var bj = document.getElementById("bj");
+			alert(bj.innerHTML);
+			});
+			
+			};
+		</script>
+		
+	</head>
+	<body>
+		<div id="total" style="border: 1px solid black;padding: 10px;width: 700px;">
+			<div class="inner" style="border: 1px solid black;width: 300px;">
+				<p>
+					你喜欢哪个城市？
+				</p>
+				
+				<ul id="city">
+					<li id="bj">北京</li>
+					<li>上海</li>
+					<li>东京</li>
+					<li>首尔</li>
+				</ul>
+				<br>
+
+				
+				<p>
+					你喜欢哪款游戏？
+				</p>
+				
+				<ul id="phone">
+					<li>红警</li>
+					<li>实况</li>
+					<li>极品飞车</li>
+					<li>魔兽</li>
+				</ul>
+				
+				<br>
+				
+				<p>
+					你手机的操作系统是？
+				</p>
+				
+				<ul>
+					<li>iOS</li>
+					<li  id="android">Android</li>
+					<li>windows phone</li>
+			
+				</ul>
+				
+				<br>
+				
+			</div>
+			<div  style="width: 330px;float: right;">
+				<button type="button" id="btn1">查找#bj节点</button><br />
+				<button type="button" id="btn2">查找所有li节点</button><br />
+				<button type="button" id="btn3">查找name=gender的所有节点</button><br />
+				<button type="button" id="btn4">查找#city下的所有li节点</button><br />
+				<button type="button" id="btn5">返回#city下的所有子节点</button><br />
+				<button type="button" id="btn6">返回#phone的第一个子节点</button><br />
+				<button type="button" id="btn7">返回#bj的父节点</button><br />
+				<button type="button" id="btn8">返回#android的前一个兄弟节点</button><br />
+				<button type="button" id="btn9">返回username的value属性值</button><br />
+				<button type="button" id="btn10">设置username的value属性值</button><br />
+				<button type="button" id="btn11">返回#bj的文本值</button>
+			</div>
+			
+			<div class="msg" style="border: 1px solid black;width: 300px;display: inline-block;">
+				
+				<div >
+					
+				
+				gender：
+				
+				<input type="checkbox" name="gender" value="male" />男
+				<input type="checkbox" name="gender" value="female" />女
+				</div>
+				<div >
+					
+				
+				username：
+				
+				<input type="text" name="username" value="22" />
+			
+				</div>
+				</div>
+				
+			
+			
+		</div>
+	</body>
+</html>
