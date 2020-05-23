@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			window.onload = function() {
+				//获取body标签
+				// var body = document.getElementsByTagName("body")[0];
+
+				//在document中有一个属性body，他保存的是body的引用
+				var body = document.body;
+
+				//在document中有一个属性documentElement，他保存的是html根标签
+				var html = document.documentElement;
+
+				//在document中有一个属性all，他保存的是页面中的所有元素
+				var all = document.all;
+				console.log(all);
+				console.log(all.length);
+				for (var i = 0; i < all.length; i++) {
+					console.log(all[i]);
+				}
+
+				all = document.getElementsByTagName("*");
+
+				//根据元素的class属性值查询一组元素节点对象
+				// getElementsByClassName()不支持IE8及以下的浏览器
+				var box1 = document.getElementsByClassName("box1");
+				console.log(box1.length);
+
+
+				//获取class为box1中所有的div
+				//.box1 div
+				/* 
+				 document.querySelector()
+					- 需要一个选择器的字符串作为参数，可以根据一个css选择器来查询一个元素节点对象
+					- 使用该方法总会发挥唯一的一个元素，如果满足条件的元素有多个，那么他只会返回第一个
+				 */
+				var div = document.querySelector(".box1 div");
+				console.log(div.innerHTML);
+
+/* 
+ document.querySelectorAll()
+	- 该方法和 document.querySelector()类似，不同的是他会将符合条件的元素封装在一个数组中全返回
+ */
+				var div2 = document.querySelectorAll(".box1 div");
+				console.log(div2);
+				
+								var div3 = document.querySelectorAll("#df")[0];
+								console.log(div3.innerHTML);
+			};
+		</script>
+	</head>
+	<body>
+		<div class="box1">
+
+			<div>
+
+				woshi
+			</div>
+			<div id="df">
+
+				wos分hi
+			</div>
+
+		</div>
+		<div>
+
+		</div>
+	</body>
+</html>
