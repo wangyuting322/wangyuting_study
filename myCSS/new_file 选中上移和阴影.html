@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="./fa/css/all.css">
+		<title></title>
+		<style>
+			#top-outer-wrapper{
+				width: 400px;
+				background-color: #BBFFAA;
+				position: relative;
+			}
+			
+			#top-outer-wrapper > div{
+				width: 100px;
+				height: 100px;
+				background-color: white;
+				float: left;
+				margin: 10px;
+				transition:all .5s;
+			}
+			#top-outer-wrapper > div:hover {
+				box-shadow: 1px 1px 5px rgba(0,0,0,.3);
+				transform: translateY(-1px);
+			}
+			
+			.clearfix::before,
+			.clearfix::after{
+				content: "";
+				display: block;
+				clear: both;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="top-outer-wrapper" class="clearfix">
+			<div id="top-inner-wrapper">
+				
+			</div>
+			<div id="top-inner-wrapper2">
+				
+			</div>
+		</div>
+	</body>
+</html>

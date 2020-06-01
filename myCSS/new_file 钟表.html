@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+html{
+	perspective: 800px;
+}
+        /* 设置表的样式 */
+        .clock {
+            width: 500px;
+            height: 500px;
+            margin: 0 auto;
+            margin-top: 100px;
+            border-radius: 50%;
+            border: 10px solid black;
+            position: relative;
+            background-color: #BBFFAA;
+            background-size: cover;
+        }
+
+       .clock > div{
+		   position: absolute;
+		/* 底部在中心 */
+		   bottom: 50%;
+		   left: 50%;
+		   transform: translateX(-50%);
+		   transform-origin: bottom;
+	   }
+
+        /* 设置时针 */
+      
+
+        .hour {
+            height: 25%;
+            width: 6px;
+            background-color: #000;
+			  margin: 0 auto;
+            animation: timerun 216000s linear infinite;
+
+        }
+
+        /* 设置分针 */
+      
+        .min {
+            height: 35%;
+            width: 4px;
+            background-color: #000;
+            margin: 0 auto;
+			animation: timerun 3600s linear infinite;
+        }
+
+         /* 设置秒针 */
+       
+
+        .sec {
+            height: 45%;
+            width: 2px;
+            background-color: #f00;
+            margin: 0 auto;
+			animation: timerun 60s linear infinite;
+        }
+
+
+
+
+/* 
+        旋转的关键帧
+*/
+@keyframes timerun{
+	to{
+		transform: rotateZ(360deg);
+	}
+	from{
+		transform: rotateZ(0deg);
+	}
+}
+     
+    </style>
+</head>
+
+<body>
+
+    <!-- 创建表的容器 -->
+    <div class="clock">
+        <!-- 创建时针 -->
+       
+            <div class="hour"></div>
+     
+
+        <!-- 创建分针 -->
+       
+            <div class="min"></div>
+       
+
+        <!-- 创建秒针 -->
+       
+            <div class="sec"></div>
+       
+
+    </div>
+
+
+
+
+
+</body>
+
+</html>
