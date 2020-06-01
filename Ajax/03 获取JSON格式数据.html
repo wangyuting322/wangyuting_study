@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="./new_file.css">
+		<script type="text/javascript">
+			window.onload = function() {
+				// 获取元素a
+				var a = document.getElementsByTagName("a");
+				//a遍历
+				for (var i = 0; i < a.length; i++) {
+					//1.a加一个单击响应函数
+					a[i].onclick = function() {
+						// 3.创建一个XMLHttpRequest 对象
+						var request = new XMLHttpRequest();
+						// 4.准备发送请求的数据:url
+						var method = "GET";
+						//url加一个时间戳可以起到禁用缓存的作用
+						var url = this.href + "?time=" + new Date();
+						// 5.调用XMLHttpRequest 对象的open方法
+						request.open(method, url);
+						// 6.调用XMLHttpRequest 对象的send方法
+						request.send(null);
+						// 7.为XMLHttpRequest 对象添加onreadystatechange 响应函数
+						request.onreadystatechange = function() {
+							// alert(request.readyState);
+							//8.判断响应是否完成：当XMLHttpRequest 对象的readyState值为4的时候
+							if (request.readyState == 4) {
+								//9.判断响应是否可用：当XMLHttpRequest 对象的status值为200的时候
+								if (request.status == 200 || request.status == 304) {
+
+									// 10.获取响应结果，json格式的结果使用XMLHttpRequest对象的responseText
+									var result = request.responseText;
+									// 11.解析json格式
+									// alert(result);
+									var result1 = eval("("+result+")");
+									//创建元素节点
+									var h2Elm = document.createElement("h2");
+									var nameText = document.createTextNode(result1.person.name);
+									h2Elm.appendChild(nameText);
+									
+									var aElm = document.createElement("a");
+									var websiteText = document.createTextNode(result1.person.website);
+									aElm.appendChild(websiteText);
+									
+									var aElm2 = document.createElement("a");
+									var emailText = document.createTextNode(" "+result1.person.email);
+									aElm2.appendChild(emailText);
+									
+									var details = document.getElementById("details");
+									details.innerHTML ="";
+									details.appendChild(h2Elm);
+									details.appendChild(aElm);
+									details.appendChild(aElm2);
+
+								}
+							}
+
+						}
+						//2.取消a的默认跳转
+						return false;
+					};
+				}
+
+			};
+		</script>
+	</head>
+	<body>
+		<a href="./files/andy.js">andy</a>
+		<a href="./files/john.js">john</a>
+		<a href="./files/sarah.js">sarah</a>
+		<div id="details"></div>
+	</body>
+</html>

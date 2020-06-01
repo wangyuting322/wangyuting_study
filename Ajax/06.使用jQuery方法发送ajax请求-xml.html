@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="./new_file.css">
+		<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+		<script type="text/javascript">
+		
+		$(function(){
+			$("a").click(function(){
+			
+				var url = this.href;
+				var args = {"time":new Date()};
+			
+				$.get(url,args,function(data){
+					var name = $(data).find("name").text();
+					var email = $(data).find("email").text();
+					var website = $(data).find("website").text();
+				
+					$("#details").empty()
+					.append("<h2><a href='mailto:"+name+"'>"+name+"</a><h2>")
+					.append("<a href='"+website+"'>"+website+"</a>");
+					
+				});
+				
+			
+				
+				return false;
+			});
+		});
+			
+		</script>
+	</head>
+	<body>
+		<a href="./files/jeremeire.xml">andy</a>
+		<a href="./files/jeremeire.xml">john</a>
+		<a href="./files/jeremeire.xml">sarah</a>
+		<div id="details"></div>
+	</body>
+</html>

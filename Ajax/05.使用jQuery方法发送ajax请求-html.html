@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="./new_file.css">
+		<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+		<script type="text/javascript">
+		$(function(){
+			$("a").click(function(){
+				//添加一个选择器（h1前有空格）
+				var url = this.href +"?time="+(new Date().getMilliseconds())+ " h1 a" ;
+				// var arg = {"time":new Date()};
+				$("#details").load(url);
+				
+				return false;
+			})
+		})
+			
+		</script>
+	</head>
+	<body>
+		<a href="./files/andy.html">andy</a>
+		<a href="./files/john.html">john</a>
+		<a href="./files/sarah.html">sarah</a>
+		<div id="details"></div>
+	</body>
+</html>

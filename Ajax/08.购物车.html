@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="./new_file.css">
+		<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+		<script type="text/javascript">
+			/* 
+			 1.获取当前页面的所有a节点，并为每一个a节点都添加onclick响应函数，同时取消其默认行为
+			 2.准备发送ajax请求：url(a节点的href属性值；args(时间戳)
+			 3.响应为一个JSON对象，包括：bookName,totalBookNumber,totalMoney
+			 4.把对应的属性添加到相对应的位置
+			 */
+			
+			$(function(){
+				var isHasCart = "${sessionScope.sc == null}";
+				if(isHasCart == "true"){
+					$("#cartstatus").hide();
+				}else{
+					$("#cartstatus").show();
+					
+					$("#bookName").text("${sessionScope.sc.bookName}");
+					$("#totalBookNumber").text("${sessionScope.sc.totalBookNumber}");
+					$("#totalMoney").text("${sessionScope.sc.totalMoney}");
+					
+				}
+				
+				$("a").click(function(){
+					$("#cartstatus").show();
+					
+					var url = this.href;
+					var args = {"time":new Date()};
+					
+					$.getJSON(url,args,function(data){
+						$("#bookName".text(data.bookName));
+						$("#totalBookNumber".text(data.totalBookNumber));
+						$("#totalMoney".text(data.totalMoney));
+					});
+					return false;
+				});
+			});
+			
+		
+			
+		</script>
+	</head>
+	<body>
+		您已经将&nbsp;<span id="bookName"></span>&nbsp;放入购物车，
+		购物车中的有&nbsp;<span id="totalBookNumber"></span>&nbsp;本书，
+		总价格&nbsp;<span id="totalMoney"></span>&nbsp;元<br />
+		java<a href="addToCart?id=Java&price=100">加入购物车</a>
+		<br />
+		Oracle<a href="addToCart?id=Oracle&price=200">加入购物车</a>
+		<br />
+		strurs2<a href="addToCart?id=Struts2&price=100">加入购物车</a>
+	
+	</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+		<script type="text/javascript">
+		
+			
+			$(function(){
+				$("a").click(function(){
+					//使用load方法处理ajax
+					// var url = this.href;
+					var url = this.href+"?time="+(new Date().getMilliseconds());
+					//去除缓存
+					
+					$("#details").load(url);
+					//去掉a的默认跳转
+					return false;
+				});
+			});
+		</script>
+	</head>
+	<body>
+	<a href="files/hello.txt">andy</a>
+	<div id="details"></div>
+	</body>
+</html>

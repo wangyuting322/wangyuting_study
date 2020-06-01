@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script>
+			var jsonobject = '{
+				"name":"atguigu",
+				"age":18,
+				"address":{"city":"beijing","school":"尚硅谷"},
+				"teaching":function(){
+					alert("javaEE,,,");
+				}
+			}';
+			
+			// alert(jsonobject.name);
+			// alert(jsonobject.address.city);
+			// jsonobject.teaching();
+			
+			//不可以传函数
+			var jsonobject1 = eval("("+jsonobject+")");
+			var jsonobject2 = JSON.parse(jsonobject);
+			// alert(jsonobject1.name);
+			jsonobject2.teaching();
+			
+			
+			//属性值一定要是双引号
+			var testStr = '{"name":"wang","age":18}';
+			
+			var testStr1 = eval("("+testStr+")");
+			var testStr2 = JSON.parse(testStr);
+			// alert(testStr1.name);
+		</script>
+	</head>
+	<body>
+		
+	</body>
+</html>
