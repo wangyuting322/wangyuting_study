@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <table id="bookCart">
+    <thead>
+      <tr>
+        <th> </th>
+        <th>书籍名称</th>
+        <th>出版日期</th>
+        <th>价格</th>
+        <th>购买数量</th>
+        <th>操作</th>
+    </thead>
+
+    </tr>
+    <tbody >
+      <tr  v-for="(value,index) in book">
+
+        <td>{{order(index)}}
+        </td>
+        <td>{{value.name}}
+        <td>{{value.date}}
+        </td>
+        </td>
+
+        <!-- 使用方法 -->
+        <!-- <td>{{getFinalPrice(value.price)}} -->
+
+        <!-- 使用filters过滤器 -->
+        <td>{{value.price |showPrice()}}
+        </td>
+
+        <td>
+          <!-- <button @click="value.num--">-</button> -->
+          <!-- <button @click="decrease(index)">-</button> -->
+          <!-- 无法点击 -->
+          <button @click="decrease(index)" :disabled = "value.num ==1 ">-</button>
+          <span>{{value.num}}</span>
+          <button @click="value.num++">+</button>
+        </td>
+
+        <td>
+          <button @click="remove(index)">移除</button>
+        </td>
+      </tr>
+
+      <tr v-if = "book.length !=0" >
+        <!-- <td colspan="6">总价：￥{{totalPrice.toFixed(2)}}</th> -->
+        <!-- <td colspan="6">总价：{{totalPrice}}</th> -->
+        <td colspan="6">总价：{{totalPrice |showPrice()}}</th>
+      </tr>
+      <tr v-else>
+        <td id = "empty" colspan="6" > 您的购物车为空</td> </tr>
+   
+  </table>
+  <script src="../js/vue.js"></script>
+  <script src="main.js"></script>
+  
+</body>
+
+</html>

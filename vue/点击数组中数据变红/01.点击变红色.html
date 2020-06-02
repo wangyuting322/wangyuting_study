@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .active {
+      color: red;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <ul>
+      <li :class="{active:myIndex==index}" v-for='(m,index) in movies' v-on:click="fun(index)">{{index}}{{m}}</li>
+    </ul>
+
+  </div>
+  <script src="../js/vue.js"></script>
+  <script>
+
+
+    const app = new Vue({
+      el: '#app',
+      data: {
+        movies: ['星际穿越', '大话西游', '少年派', '冷山'],
+        myIndex: 0
+      },
+      methods: {
+        fun: function (obj) {
+          this.myIndex==obj?this.myIndex=-1: this.myIndex=obj;
+         
+          
+        }
+      }
+
+    })
+
+  </script>
+</body>
+
+</html>
